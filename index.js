@@ -31,4 +31,3 @@ const categoriesRouter = require('./routes/categories')
 app.use('/categories', categoriesRouter)
 
 app.listen(3000, () => console.log('Server Started'))
-
