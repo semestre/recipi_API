@@ -7,7 +7,10 @@ const mongoose = require('mongoose');
 console.log("👉 MONGODB_URI:", process.env.MONGODB_URI);
 
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://sarayalexandramartinez:8KrfzLBUyDOPjB7N@recipiesapp.mgnonro.mongodb.net/?retryWrites=true&w=majority&appName=recipiesApp", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 const db = mongoose.connection
 db.on('error', (error) => console.error('MongoDB connection error:', error))
 db.once('open', () => console.log('Connected to Database'))
