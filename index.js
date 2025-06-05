@@ -7,10 +7,10 @@ const mongoose = require('mongoose');
 console.log("👉 MONGODB_URI:", process.env.MONGODB_URI);
 
 
-mongoose.connect("mongodb+srv://sarayalexandramartinez:8KrfzLBUyDOPjB7N@recipiesapp.mgnonro.mongodb.net/?retryWrites=true&w=majority&appName=recipiesApp", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('✅ Connected to Database'))
+  .catch((error) => console.error('❌ MongoDB connection error:', error));
+
 const db = mongoose.connection
 db.on('error', (error) => console.error('MongoDB connection error:', error))
 db.once('open', () => console.log('Connected to Database'))
@@ -26,7 +26,7 @@ app.use('/recipes', recipesRouter)
 const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
 
-// Categories Router
+// Categories Rgethttp://localhost:3000/categories/Query%20Paramsouter
 const categoriesRouter = require('./routes/categories')
 app.use('/categories', categoriesRouter)
 
