@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 
 console.log("👉 MONGODB_URI:", process.env.MONGODB_URI);
 
-mongoose.connect(process.env.MONGODB_URI)  
+mongoose.connect("mongodb+srv://saray78544:sLxA7Po5jsPkCeF4@apirecipie.ak8y38r.mongodb.net/?retryWrites=true&w=majority&appName=ApiRecipie")  
   .then(() => console.log('✅ Connected to Database'))
   .catch((error) => console.error('❌ MongoDB connection error:', error));
 
