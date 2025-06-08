@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
   image: {
     type: String,
     required: false  // optional, 'cause maybe not everyone wants a profile pic rn
+  },
+  favorits: {
+    type: [String], // string for favorits
+    required: false
   }
 });
 

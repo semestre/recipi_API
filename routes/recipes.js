@@ -31,12 +31,16 @@ router.post('/', async (req, res) => {
     image: req.body.image,
     description: req.body.description,
     pasos: req.body.pasos,
-    idcategory: req.body.idcategory
+    idcategory: req.body.idcategory,
+    time: req.body.time,
+    serving: req.body.serving,
+    calories: req.body.calories,
+    dificulty: req.bodydificulty
   });
 
   try {
     const newRecipe = await recipe.save();
-    res.status(201).json(newRecipe); // 201 = created
+    res.status(201).json(newRecipe); 
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -63,6 +67,18 @@ router.patch('/:id', getRecipe, async (req, res) => {
     }
     if (req.body.  idcategory != null) {
         res.recipe.idcategory = req.body.idcategory
+    }
+    if (req.body.time != null) {
+        res.recipe.time = req.body.time
+    }
+    if (req.body.serving != null) {
+        res.recipe.serving = req.body.serving
+    }
+    if (req.body.calories != null) {
+        res.recipe.calories = req.body.calories
+    }
+    if (req.body.dificulty != null) {
+        res.recipe.dificulty = req.body.dificulty
     }
 
     try {

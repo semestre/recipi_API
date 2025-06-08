@@ -26,16 +26,21 @@ router.get('/:id', getUser, (req, res) => {
 //#################////#################//
 router.post('/', async (req, res) => {
   try {
-    const { username, password, image } = req.body; 
+    const { username, password, image, favorits } = req.body;
 
     if (!username || !password) {
       return res.status(400).json({ message: 'Missing username or password' });
     }
 
+    if (!favorits || !Array.isArray(favorits)) {
+      return res.status(400).json({ message: 'Favorits must be a list of strings' });
+    }
+
     const user = new User({
       username,
       password,
-      image
+      image, 
+      favorits 
     });
 
     const newUser = await user.save();
@@ -53,6 +58,7 @@ router.patch('/:id', getUser, async (req, res) => {
   if (req.body.username != null) res.user.username = req.body.username;
   if (req.body.password != null) res.user.password = req.body.password;
   if (req.body.image != null) res.user.image = req.body.image;
+  if (req.body.favorits != null) res.user.favorits = req.body.favorits; // update those favs, babyyy 💅
 
   try {
     const updatedUser = await res.user.save();
@@ -61,6 +67,7 @@ router.patch('/:id', getUser, async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
 
 //#################////#################//
 //         DELETE /users/:id            //
