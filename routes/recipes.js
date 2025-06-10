@@ -31,12 +31,12 @@ router.post('/', async (req, res) => {
     image: req.body.image,
     description: req.body.description,
     pasos: req.body.pasos,
-    idcategory: req.body.idcategory,
-    favorite: req.body.favorite ?? false, 
+    idcategory: req.body.idcategory, 
     time: req.body.time,
     serving: req.body.serving,
     calories: req.body.calories,
-    dificulty: req.body.dificulty
+    dificulty: req.body.dificulty,
+    favorite: req.body.favorite ?? false
   });
 
   try {
@@ -59,12 +59,11 @@ router.patch('/:id', getRecipe, async (req, res) => {
   if (req.body.description != null) res.recipe.description = req.body.description;
   if (req.body.pasos != null) res.recipe.pasos = req.body.pasos;
   if (req.body.idcategory != null) res.recipe.idcategory = req.body.idcategory;
-  if (req.body.favorite != null) res.recipe.favorite = req.body.favorite; // 💖 here it is
   if (req.body.time != null) res.recipe.time = req.body.time;
   if (req.body.serving != null) res.recipe.serving = req.body.serving;
   if (req.body.calories != null) res.recipe.calories = req.body.calories;
   if (req.body.dificulty != null) res.recipe.dificulty = req.body.dificulty;
-
+  if (req.body.favorite != null) res.recipe.favorite = req.body.favorite;
   try {
     const updatedRecipe = await res.recipe.save();
     res.json(updatedRecipe);
