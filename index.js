@@ -1,3 +1,6 @@
+// To start it npm run devStart
+// Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 require('dotenv').config();
 
 const express = require('express');

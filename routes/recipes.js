@@ -32,7 +32,11 @@ router.post('/', async (req, res) => {
     description: req.body.description,
     pasos: req.body.pasos,
     idcategory: req.body.idcategory,
-    favorite: req.body.favorite ?? false  // Add favorite, default to false if missing
+    favorite: req.body.favorite ?? false, 
+    time: req.body.time,
+    serving: req.body.serving,
+    calories: req.body.calories,
+    dificulty: req.body.dificulty
   });
 
   try {
@@ -44,31 +48,22 @@ router.post('/', async (req, res) => {
 });
 
 
+
 //#################////#################//
 //          UPDATE /recipes/:id         //
 //#################////#################//
 router.patch('/:id', getRecipe, async (req, res) => {
-  if (req.body.name != null) {
-    res.recipe.name = req.body.name;
-  }
-  if (req.body.ingredients != null) {
-    res.recipe.ingredients = req.body.ingredients;
-  }
-  if (req.body.image != null) {
-    res.recipe.image = req.body.image;
-  }
-  if (req.body.description != null) {
-    res.recipe.description = req.body.description;
-  }
-  if (req.body.pasos != null) {
-    res.recipe.pasos = req.body.pasos;
-  }
-  if (req.body.idcategory != null) {
-    res.recipe.idcategory = req.body.idcategory;
-  }
-  if (req.body.favorite != null) {
-    res.recipe.favorite = req.body.favorite;
-  }
+  if (req.body.name != null) res.recipe.name = req.body.name;
+  if (req.body.ingredients != null) res.recipe.ingredients = req.body.ingredients;
+  if (req.body.image != null) res.recipe.image = req.body.image;
+  if (req.body.description != null) res.recipe.description = req.body.description;
+  if (req.body.pasos != null) res.recipe.pasos = req.body.pasos;
+  if (req.body.idcategory != null) res.recipe.idcategory = req.body.idcategory;
+  if (req.body.favorite != null) res.recipe.favorite = req.body.favorite; // 💖 here it is
+  if (req.body.time != null) res.recipe.time = req.body.time;
+  if (req.body.serving != null) res.recipe.serving = req.body.serving;
+  if (req.body.calories != null) res.recipe.calories = req.body.calories;
+  if (req.body.dificulty != null) res.recipe.dificulty = req.body.dificulty;
 
   try {
     const updatedRecipe = await res.recipe.save();
@@ -77,6 +72,7 @@ router.patch('/:id', getRecipe, async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
 
 
 
