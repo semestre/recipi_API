@@ -31,47 +31,53 @@ router.post('/', async (req, res) => {
     image: req.body.image,
     description: req.body.description,
     pasos: req.body.pasos,
-    idcategory: req.body.idcategory
+    idcategory: req.body.idcategory,
+    favorite: req.body.favorite ?? false  // Add favorite, default to false if missing
   });
 
   try {
     const newRecipe = await recipe.save();
-    res.status(201).json(newRecipe); // 201 = created
+    res.status(201).json(newRecipe);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
+
 //#################////#################//
 //          UPDATE /recipes/:id         //
 //#################////#################//
 router.patch('/:id', getRecipe, async (req, res) => {
-    if (req.body.name != null) {
-        res.recipe.name = req.body.name
-    }
-    if (req.body.ingredients != null) {
-        res.recipe.ingredients = req.body.ingredients
-    }
-    if (req.body.image != null) {
-        res.recipe.image = req.body.image
-    }
-    if (req.body.description != null) {
-        res.recipe.description = req.body.description
-    }
-    if (req.body.pasos != null) {
-        res.recipe.pasos = req.body.pasos
-    }
-    if (req.body.  idcategory != null) {
-        res.recipe.idcategory = req.body.idcategory
-    }
+  if (req.body.name != null) {
+    res.recipe.name = req.body.name;
+  }
+  if (req.body.ingredients != null) {
+    res.recipe.ingredients = req.body.ingredients;
+  }
+  if (req.body.image != null) {
+    res.recipe.image = req.body.image;
+  }
+  if (req.body.description != null) {
+    res.recipe.description = req.body.description;
+  }
+  if (req.body.pasos != null) {
+    res.recipe.pasos = req.body.pasos;
+  }
+  if (req.body.idcategory != null) {
+    res.recipe.idcategory = req.body.idcategory;
+  }
+  if (req.body.favorite != null) {
+    res.recipe.favorite = req.body.favorite;
+  }
 
-    try {
-        const updatedRecipe = await res.recipe.save()
-        res.json(updatedRecipe)
-    } catch (error) {
-        res.status(400).json({ message: error.message })
-    }
-})
+  try {
+    const updatedRecipe = await res.recipe.save();
+    res.json(updatedRecipe);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 
 
 //#################////#################//

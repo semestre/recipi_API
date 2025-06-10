@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 console.log("👉 MONGODB_URI:", process.env.MONGODB_URI);
 
 
-mongoose.connect("mongodb+srv://sarayalexandramartinez:8KrfzLBUyDOPjB7N@recipiesapp.mgnonro.mongodb.net/?retryWrites=true&w=majority&appName=recipiesApp")
+mongoose.connect("mongodb+srv://sarayalexandramartinez:8KrfzLBUyDOPjB7N@recipieapi.l9nlpxl.mongodb.net/?retryWrites=true&w=majority&appName=recipieApi")
   .then(() => console.log('✅ Connected to Database'))
   .catch((error) => console.error('❌ MongoDB connection error:', error));
 
@@ -25,9 +25,11 @@ app.use('/recipes', recipesRouter)
 // User Router
 const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
+console.log("✅ /users route loaded:", typeof usersRouter === 'function');
 
 // Categories Rgethttp://localhost:3000/categories/Query%20Paramsouter
 const categoriesRouter = require('./routes/categories')
 app.use('/categories', categoriesRouter)
+
 
 app.listen(3000, () => console.log('Server Started'))

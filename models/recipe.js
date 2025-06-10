@@ -24,6 +24,10 @@ const recipeSchema = new mongoose.Schema({
   idcategory: {
     type: String,
     required: true
+  },
+  favorite: {
+    type: Boolean,
+    default: false  
   }
 })
 
